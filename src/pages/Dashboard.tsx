@@ -22,7 +22,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getUser = async () => {
       const id = localStorage.getItem('id');
-      const response = await fetch(`http://localhost:3000/api/user/${id}`, {
+      const response = await fetch(`https://unigchallengebackend.onrender.com/api/user/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const findSubjects = async () => {
-      const response = await fetch('http://localhost:3000/api/courses', {
+      const response = await fetch('https://unigchallengebackend.onrender.com/api/courses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,21 +71,24 @@ export default function Dashboard() {
       let editedSubjects = [...(user?.subjects || []), ...selectedSubjects];
 
       try {
-        const response = await fetch(`http://localhost:3000/api/edit-user/${user?._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            _id: user?._id,
-            name: user?.name,
-            type_user: user?.type_user,
-            course: user?.course,
-            password: user?.password,
-            cpf: user?.cpf,
-            subjects: editedSubjects,
-          }),
-        });
+        const response = await fetch(
+          `https://unigchallengebackend.onrender.com/api/edit-user/${user?._id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              _id: user?._id,
+              name: user?.name,
+              type_user: user?.type_user,
+              course: user?.course,
+              password: user?.password,
+              cpf: user?.cpf,
+              subjects: editedSubjects,
+            }),
+          }
+        );
 
         const data = await response.json();
         console.log(data.subjects);
@@ -107,21 +110,24 @@ export default function Dashboard() {
       try {
         const editedSubjects = user?.subjects.filter((s)=> s !== subject);
 
-        const response = await fetch(`http://localhost:3000/api/edit-user/${user?._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            _id: user?._id,
-            name: user?.name,
-            type_user: user?.type_user,
-            course: user?.course,
-            password: user?.password,
-            cpf: user?.cpf,
-            subjects: editedSubjects,
-          }),
-        });
+        const response = await fetch(
+          `https://unigchallengebackend.onrender.com/api/edit-user/${user?._id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              _id: user?._id,
+              name: user?.name,
+              type_user: user?.type_user,
+              course: user?.course,
+              password: user?.password,
+              cpf: user?.cpf,
+              subjects: editedSubjects,
+            }),
+          }
+        );
 
         const data = await response.json();
         console.log(data);
