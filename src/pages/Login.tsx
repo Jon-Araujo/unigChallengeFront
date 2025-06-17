@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import isMobile from "../utils/IsMobile";
+import { formatCpf } from '../utils/formatCpf';
 
 export default function Login() {
   const [cpf, setCpf] = useState('');
@@ -53,21 +54,21 @@ export default function Login() {
         </p>
         <input
           type="text"
-          className={`text-white ${isMobile() ? 'bg-white placeholder:text-[#0E3860] selected:border-[#0E3860] w-3/4' : 'placeholder:text-white w-1/2'} border-2 border-white p-2 rounded-lg mt-12 mb-4`}
+          className={`${isMobile() ? 'text-[#0E3860] bg-white placeholder:text-[#0E3860] selected:border-[#0E3860] w-3/4' : 'text-white placeholder-white'} border-2 border-white p-2 rounded-lg my-6`}
           placeholder="Informe seu CPF"
           value={cpf}
-          onChange={(e) => setCpf(e.target.value)}
+          onChange={(e) => setCpf(formatCpf(e.target.value))}
         />
         <input
           type="text"
-          className={`text-white ${isMobile() ? 'bg-white placeholder:text-[#0E3860] selected:border-[#0E3860] w-3/4' : 'placeholder:text-white w-1/2'} border-2 border-white p-2 rounded-lg mb-12`}
+          className={`${isMobile() ? 'text-[#0E3860] bg-white placeholder:text-[#0E3860] selected:border-[#0E3860] w-3/4' : 'text-white placeholder-white'} border-2 border-white p-2 rounded-lg mb-12`}
           placeholder="Informe sua senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
           onClick={authUser}
-          className="cursor-pointer p-2 bg-white border-2 rounded-lg text-[#0E3860] w-1/2 rounded-lg hover:bg-[#0E3860] hover:text-white hover:border-white transition-all duration-300"
+          className="cursor-pointer p-2 bg-white border-2 rounded-lg text-[#0E3860] w-1/2 rounded-lg hover:bg-[#0E3860] hover:text-white hover:border-white active:scale-95 active:bg-gray-300 transition-all duration-300"
         >
           Acessar
         </button>

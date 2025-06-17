@@ -199,7 +199,7 @@ hover:scale-130 transform-all duration-600"
             <DialogHeader>
               <DialogTitle>Disciplinas disponiveis para o curso de {user?.course}:</DialogTitle>
               <DialogDescription className="max-h-[80%]">
-                <ul className="overflow-y-auto max-h-[70%]">
+                <ul className="overflow-y-auto max-h-[60%]">
                   {(subjects ?? []).map((s, index) => (
                     <li
                       key={index}
